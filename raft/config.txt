@@ -1,0 +1,6 @@
+N: 5
+node0: localhost:5001
+node1: localhost:5002
+node2: localhost:5003
+node3: localhost:5004
+node4: localhost:5005

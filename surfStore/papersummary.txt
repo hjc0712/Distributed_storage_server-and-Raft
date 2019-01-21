@@ -1,0 +1,46 @@
+# Your paper summary goes here:
+
+PID: A53269655
+
+
+Q: Write a brief summary of this paper, including your opinion of the strengths and weaknesses of the design.
+
+
+A:
+	
+	Summary:
+
+	The most important purpose of RPC is to make the distributed computation easier. To be specific, more simple, efficient as well as powerful. 
+
+	The program structure in the paper that RPC uses is based on the concept of stubs. When making a remote call, there are five pieces of program: the user, the user-stub, the RPC communications package (known as RPCRuntime), the server-stub, and the server.
+
+	When making remote calls, first The client make a local procedure call to the client stub, with parameters pushed on to the stack in the normal way. Then the client stub packs the parameters into a message and makes a system call to send the message. After that the client's local operating system sends the message from the client machine to the server machine, and the local operating system on the server machine passes the incoming packets to the server stub. Then, the server stub unpacks the parameters from the message. Finally, the server stub calls the server procedure.
+
+	For the performance, by interleaving parallel remote calls from multiple processes, the RPC achieves a data rate of 2 megabits per second transferring between Dorado main memories on the 3 megabit Ethernet. This is equal to the rate achieved by the most highly optimised byte stream implementation.
+
+
+
+	Strength:
+
+	The paper highlights several basic strength of RPC, these are: simplicity, efficiency, security and versatility. 
+
+	To be specific, firstly, the RPC makes procedure calls as close as possible to those of local (single machine) procedure calls. That makes the communication much simple and highly efficient, which ensure that the RPC facility is easy to use, particularly for
+	programmers familiar with single-machine use of our languages and packages. At the same time, the RPC makes communication as powerful as possible consistent with the aims of simplicity and efficiency. Moreover, the RPC can provide a secure communication through PC package and protocol with facilities for providing encryption based security for calls, which can include protection of the packages for secure communication across an open network.
+
+
+
+	Weakness:
+
+	The remote calls are sure to consume more time than the local calls, because RPC includes many extra steps in communication between different machines and packages’ operations, as well as the latency caused by the network transportation.
+
+
+
+
+
+Q: Is the design presented relevant for today’s distributed systems? Why or why not?
+
+A:
+	Yes, the distributed system today rely on the five pieces of programs in the paper: the user, the user-stub, the RPC communications package, the server-stub, and the server. 
+
+	For example, a early distributed computation tool CORBAR use IDL（Interface Definition Language） to define the remote interface, and map it to the certain platform language. And for most of the communications between different languages, RPC implement the similar strategy, such as Web Services(SOAP), Thrift, etc. Trough IDL, they can generate their own ‘user-stub’ and ‘server-stub’, and get RPCRuntime support from framework library.
+
